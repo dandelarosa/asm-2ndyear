@@ -1,8 +1,14 @@
 var tileImage = document.createElement("img");
+var playerImage = document.createElement("img");
+
 var imagesToLoad = [
   { 
     imgPointer: tileImage, 
     path: 'assets/tiles.png'
+  },
+  { 
+    imgPointer: playerImage, 
+    path: 'assets/player-right.png'
   }
 ];
 var imagesLoaded = 0;

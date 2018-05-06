@@ -4,6 +4,9 @@ const FPS = 30;
 
 var canvas, canvasContext;
 
+var playerX = 0;
+var playerY = 0;
+
 window.addEventListener("load", function(event) {
   canvas = document.createElement('canvas');
   canvas.width = GAME_WIDTH;
@@ -18,7 +21,20 @@ window.addEventListener("load", function(event) {
 });
 
 function imageLoadingDoneSoStartGame() {
-	setInterval(eachFrame, 1000/FPS);
+  setInterval(eachFrame, 1000/FPS);
+  
+  loadScene();
+}
+
+function loadScene() {
+  var objectsToLoad = TileMaps['level1'].layers[1].objects;
+  for (var i = 0; i < objectsToLoad.length; i++) {
+    var objectToLoad = objectsToLoad[i];
+    if (objectToLoad.properties.type === 'player') {
+      playerX = objectToLoad.x;
+      playerY = objectToLoad.y;
+    }
+  }
 }
 
 function eachFrame() {
@@ -53,4 +69,6 @@ function drawGame() {
       canvasContext.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     }
   }
+
+  canvasContext.drawImage(playerImage, playerX, playerY);
 }
