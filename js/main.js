@@ -12,4 +12,7 @@ window.addEventListener("load", function(event) {
 
   drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT, 'black');
   drawText("LOADING ASSETS", GAME_WIDTH/2, GAME_HEIGHT/2, 'white', 'center', 'middle');
+
+  // FIXME: DEBUG ONLY!!!
+  console.log(TileMaps['level1']);
 });
