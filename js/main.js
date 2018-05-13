@@ -23,6 +23,8 @@ window.addEventListener("load", function(event) {
 function imageLoadingDoneSoStartGame() {
   setInterval(eachFrame, 1000/FPS);
   
+  setupInput();
+
   loadScene();
 }
 
@@ -46,6 +48,18 @@ function eachFrame() {
 }
 
 function updateGame() {
+  if (leftPressed) {
+    playerX -= 5;
+  }
+  else if (upPressed) {
+    playerY -= 5;
+  }
+  else if (rightPressed) {
+    playerX += 5;
+  }
+  else if (downPressed) {
+    playerY += 5;
+  }
 }
 
 function drawGame() {
