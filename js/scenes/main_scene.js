@@ -17,21 +17,31 @@ function MainScene(tilemap) {
       player.y = objectY;
       this.player = player;
     }
+
+    var grid = new Grid2D(tilemap.layers[0].data, tilemap.width);
+    this.gridCollider = new GridCollider(grid);
   }
 
   this.update = function() {
     if (leftPressed) {
-      this.player.x -= 5;
+      this.player.dx = -5;
     }
     else if (upPressed) {
-      this.player.y -= 5;
+      this.player.dy = -5;
     }
     else if (rightPressed) {
-      this.player.x += 5;
+      this.player.dx = 5;
     }
     else if (downPressed) {
-      this.player.y += 5;
+      this.player.dy = 5;
     }
+
+    this.gridCollider.handleCollisionsWith(this.player);
+    this.player.x += this.player.dx;
+    this.player.y += this.player.dy;
+
+    this.player.dx = 0;
+    this.player.dy = 0;
   }
 
   this.draw = function() {

@@ -8,11 +8,15 @@
 </head>
 
 <body>
+  <!-- Install generic engine code first -->
+  <script src="js/engine/grid_2d.js"></script>
+  <!-- Then game-specific code -->
   <script src="js/levels/level1.js"></script>
   <script src="js/objects/player.js"></script>
   <script src="js/scenes/main_scene.js"></script>
   <!-- Import top-level scripts here -->
   <script src="js/assets.js"></script>
+  <script src="js/grid_collider.js"></script>
   <script src="js/graphics_common.js"></script>
   <script src="js/input.js"></script>
   <!-- Always main.js import last -->
