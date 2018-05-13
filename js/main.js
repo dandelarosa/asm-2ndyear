@@ -4,9 +4,6 @@ const FPS = 30;
 
 var canvas, canvasContext;
 
-var playerX = 0;
-var playerY = 0;
-
 window.addEventListener("load", function(event) {
   canvas = document.createElement('canvas');
   canvas.width = GAME_WIDTH;
@@ -29,17 +26,7 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function loadScene() {
-  var objectsToLoad = TileMaps['level1'].layers[1].objects;
-  for (var i = 0; i < objectsToLoad.length; i++) {
-    var objectToLoad = objectsToLoad[i];
-    if (objectToLoad.properties.type === 'player') {
-      playerX = objectToLoad.x;
-      // In the Tiled app, the origin for objects is bottom left.
-      // See https://github.com/bjorn/tiled/issues/386 for details.
-      // We need to change the origin to top left instead.
-      playerY = objectToLoad.y - 32;
-    }
-  }
+  this.currentScene = new MainScene(TileMaps['level1']);
 }
 
 function eachFrame() {
@@ -48,44 +35,10 @@ function eachFrame() {
 }
 
 function updateGame() {
-  if (leftPressed) {
-    playerX -= 5;
-  }
-  else if (upPressed) {
-    playerY -= 5;
-  }
-  else if (rightPressed) {
-    playerX += 5;
-  }
-  else if (downPressed) {
-    playerY += 5;
-  }
+  this.currentScene.update();
 }
 
 function drawGame() {
   drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT, 'black');
-
-  var dataToDraw = TileMaps['level1'].layers[0].data;
-  var mapColumns = TileMaps['level1'].width;
-  var tileWidth = TileMaps['level1'].tilewidth;
-  var tileHeight = TileMaps['level1'].tileheight;
-  var tileColumns = TileMaps['level1'].tilesets[0].columns;
-  var image = tileImage;
-  for (var i = 0; i < dataToDraw.length; i++) {
-    var tileValue = dataToDraw[i];
-    if (tileValue > 0) {
-      var tileIndex = tileValue - 1;
-      var sx = tileWidth * (tileIndex % tileColumns);
-      var sy = tileHeight * Math.floor(tileIndex / tileColumns);
-      var sw = tileWidth;
-      var sh = tileHeight;
-      var dx = tileWidth * (i % mapColumns);
-      var dy = tileHeight * Math.floor(i / mapColumns);
-      var dw = tileWidth;
-      var dh = tileHeight;
-      canvasContext.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-    }
-  }
-
-  canvasContext.drawImage(playerImage, playerX, playerY);
+  this.currentScene.draw();
 }
