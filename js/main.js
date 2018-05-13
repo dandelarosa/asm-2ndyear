@@ -32,7 +32,10 @@ function loadScene() {
     var objectToLoad = objectsToLoad[i];
     if (objectToLoad.properties.type === 'player') {
       playerX = objectToLoad.x;
-      playerY = objectToLoad.y;
+      // In the Tiled app, the origin for objects is bottom left.
+      // See https://github.com/bjorn/tiled/issues/386 for details.
+      // We need to change the origin to top left instead.
+      playerY = objectToLoad.y - 32;
     }
   }
 }
