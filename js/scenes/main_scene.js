@@ -1,33 +1,36 @@
-var playerX = 0;
-var playerY = 0;
-
 function MainScene(tilemap) {
   this.tilemap = tilemap;
 
   var objectsToLoad = tilemap.layers[1].objects;
   for (var i = 0; i < objectsToLoad.length; i++) {
     var objectToLoad = objectsToLoad[i];
+    var objectWidth = objectToLoad.width;
+    var objectHeight = objectToLoad.height;
+    var objectX = objectToLoad.x;
+    // In the Tiled app, the origin for objects is bottom left.
+    // See https://github.com/bjorn/tiled/issues/386 for details.
+    // We need to change the origin to top left instead.
+    var objectY = objectToLoad.y - objectHeight;
     if (objectToLoad.properties.type === 'player') {
-      playerX = objectToLoad.x;
-      // In the Tiled app, the origin for objects is bottom left.
-      // See https://github.com/bjorn/tiled/issues/386 for details.
-      // We need to change the origin to top left instead.
-      playerY = objectToLoad.y - 32;
+      var player = new Player();
+      player.x = objectX;
+      player.y = objectY;
+      this.player = player;
     }
   }
 
   this.update = function() {
     if (leftPressed) {
-      playerX -= 5;
+      this.player.x -= 5;
     }
     else if (upPressed) {
-      playerY -= 5;
+      this.player.y -= 5;
     }
     else if (rightPressed) {
-      playerX += 5;
+      this.player.x += 5;
     }
     else if (downPressed) {
-      playerY += 5;
+      this.player.y += 5;
     }
   }
 
@@ -54,6 +57,6 @@ function MainScene(tilemap) {
       }
     }
 
-    canvasContext.drawImage(playerImage, playerX, playerY);
+    this.player.draw();
   }
 }
