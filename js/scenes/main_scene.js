@@ -15,6 +15,8 @@ function MainScene(tilemap) {
       var player = new Player();
       player.x = objectX;
       player.y = objectY;
+      player.width = objectWidth;
+      player.height = objectHeight;
       this.player = player;
     }
 
