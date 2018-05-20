@@ -2,8 +2,14 @@ const GAME_WIDTH = 640;
 const GAME_HEIGHT = 480;
 const FPS = 30;
 
+const TILE_NOTHING = 0;
+const TILE_FLOOR = 1;
+const TILE_BRICK_BLOCK = 2;
+const TILE_STAIRS = 3;
+
 var canvas, canvasContext;
 
+var currentLevel = 1;
 var youWin = false;
 
 window.addEventListener("load", function(event) {
@@ -49,7 +55,14 @@ function drawGame() {
   this.currentScene.draw();
 }
 
+function goToNextLevel() {
+  this.currentLevel++;
+  var levelId = 'level' + this.currentLevel;
+  this.nextScene = new MainScene(TileMaps[levelId]);
+}
+
 function restartGame() {
   youWin = false;
+  this.currentLevel = 1;
   this.nextScene = new MainScene(TileMaps['level1']);
 }

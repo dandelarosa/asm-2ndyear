@@ -60,6 +60,12 @@ function MainScene(tilemap) {
     this.player.dx = 0;
     this.player.dy = 0;
 
+    var playerMidX = this.player.x + this.player.width / 2;
+    var playerMidY = this.player.y + this.player.height / 2;
+    var steppingOn = this.gridCollider.tileValueAtPoint(playerMidX, playerMidY);
+    if (steppingOn === TILE_STAIRS) {
+      goToNextLevel();
+    }
     if (this.treasure && this.objectCollider.objectsCollide(this.player, this.treasure)) {
       youWin = true;
     }
