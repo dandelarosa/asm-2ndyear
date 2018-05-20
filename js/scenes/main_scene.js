@@ -34,6 +34,9 @@ function MainScene(tilemap) {
 
   this.update = function() {
     if (youWin) {
+      if (enterPressed) {
+        restartGame();
+      }
       return;
     }
 
@@ -92,7 +95,9 @@ function MainScene(tilemap) {
 
     if (youWin) {
       canvasContext.font = '30px Arial';
-      drawText('You Win!', GAME_WIDTH/2, GAME_HEIGHT/2, 'black', 'center', 'middle');
+      drawText('You Win!', GAME_WIDTH/2, GAME_HEIGHT/2 - 30, 'black', 'center', 'middle');
+      canvasContext.font = '20px Arial';
+      drawText('Press Enter to Play Again', GAME_WIDTH/2, GAME_HEIGHT/2 + 10, 'black', 'center', 'middle');
     }
   }
 }

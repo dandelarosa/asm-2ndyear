@@ -1,8 +1,10 @@
+const KEY_ENTER = 13;
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
 const KEY_DOWN_ARROW = 40;
 
+var enterPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var rightPressed = false;
@@ -14,6 +16,9 @@ function setupInput() {
 }
 
 function onKeydown(evt) {
+  if (evt.keyCode === KEY_ENTER) {
+    enterPressed = true;
+  }
   if (evt.keyCode === KEY_LEFT_ARROW) {
     leftPressed = true;
   }
@@ -29,6 +34,9 @@ function onKeydown(evt) {
 }
 
 function onKeyup(evt) {
+  if (evt.keyCode === KEY_ENTER) {
+    enterPressed = false;
+  }
   if (evt.keyCode === KEY_LEFT_ARROW) {
     leftPressed = false;
   }

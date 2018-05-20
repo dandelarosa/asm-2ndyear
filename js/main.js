@@ -34,6 +34,10 @@ function loadScene() {
 function eachFrame() {
   updateGame();
   drawGame();
+  if (this.nextScene) {
+    this.currentScene = this.nextScene;
+    this.nextScene = null;
+  }
 }
 
 function updateGame() {
@@ -43,4 +47,9 @@ function updateGame() {
 function drawGame() {
   drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT, 'black');
   this.currentScene.draw();
+}
+
+function restartGame() {
+  youWin = false;
+  this.nextScene = new MainScene(TileMaps['level1']);
 }
