@@ -45,6 +45,26 @@
                  "width":32,
                  "x":304,
                  "y":256
+                }, 
+                {
+                 "gid":66,
+                 "height":31,
+                 "id":8,
+                 "name":"",
+                 "properties":
+                    {
+                     "type":"treasure"
+                    },
+                 "propertytypes":
+                    {
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17,
+                 "x":565,
+                 "y":113
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -52,7 +72,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":7,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",
@@ -83,8 +103,30 @@
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":1,
+         "tilecount":2,
          "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "class":"Player"
+                },
+             "1":
+                {
+                 "class":"Treasure"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "class":"string"
+                },
+             "1":
+                {
+                 "class":"string"
+                }
+            },
          "tiles":
             {
              "0":
@@ -92,6 +134,12 @@
                  "image":"..\/..\/assets\/player-right.png",
                  "imageheight":32,
                  "imagewidth":32
+                },
+             "1":
+                {
+                 "image":"..\/..\/assets\/90s_rupee.png",
+                 "imageheight":31,
+                 "imagewidth":17
                 }
             },
          "tilewidth":32

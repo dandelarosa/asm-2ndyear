@@ -1,5 +1,6 @@
 var tileImage = document.createElement("img");
 var playerImage = document.createElement("img");
+var treasureImage = document.createElement("img");
 
 var imagesToLoad = [
   { 
@@ -9,6 +10,10 @@ var imagesToLoad = [
   { 
     imgPointer: playerImage, 
     path: 'assets/player-right.png'
+  },
+  {
+    imgPointer: treasureImage,
+    path: 'assets/90s_rupee.png'
   }
 ];
 var imagesLoaded = 0;

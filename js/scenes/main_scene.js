@@ -11,7 +11,7 @@ function MainScene(tilemap) {
     // See https://github.com/bjorn/tiled/issues/386 for details.
     // We need to change the origin to top left instead.
     var objectY = objectToLoad.y - objectHeight;
-    if (objectToLoad.properties.type === 'player') {
+    if (objectToLoad.properties && objectToLoad.properties.type === 'player') {
       var player = new Player();
       player.x = objectX;
       player.y = objectY;
@@ -19,10 +19,17 @@ function MainScene(tilemap) {
       player.height = objectHeight;
       this.player = player;
     }
-
-    var grid = new Grid2D(tilemap.layers[0].data, tilemap.width);
-    this.gridCollider = new GridCollider(grid);
+    else if (objectToLoad.properties && objectToLoad.properties.type === 'treasure') {
+      var object = new Treasure();
+      object.x = objectX;
+      object.y = objectY;
+      object.width = objectWidth;
+      object.height = objectHeight;
+      this.treasure = object;
+    }
   }
+  var grid = new Grid2D(tilemap.layers[0].data, tilemap.width);
+  this.gridCollider = new GridCollider(grid);
 
   this.update = function() {
     if (leftPressed) {
@@ -70,5 +77,6 @@ function MainScene(tilemap) {
     }
 
     this.player.draw();
+    this.treasure.draw();
   }
 }
