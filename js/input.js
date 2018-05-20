@@ -31,6 +31,8 @@ function onKeydown(evt) {
   if (evt.keyCode === KEY_DOWN_ARROW) {
     downPressed = true;
   }
+
+  evt.preventDefault();
 }
 
 function onKeyup(evt) {
