@@ -30,8 +30,13 @@ function MainScene(tilemap) {
   }
   var grid = new Grid2D(tilemap.layers[0].data, tilemap.width);
   this.gridCollider = new GridCollider(grid);
+  this.objectCollider = new ObjectCollider();
 
   this.update = function() {
+    if (youWin) {
+      return;
+    }
+
     if (leftPressed) {
       this.player.dx = -5;
     }
@@ -51,6 +56,10 @@ function MainScene(tilemap) {
 
     this.player.dx = 0;
     this.player.dy = 0;
+
+    if (this.treasure && this.objectCollider.objectsCollide(this.player, this.treasure)) {
+      youWin = true;
+    }
   }
 
   this.draw = function() {
@@ -77,6 +86,13 @@ function MainScene(tilemap) {
     }
 
     this.player.draw();
-    this.treasure.draw();
+    if (this.treasure) {
+      this.treasure.draw();
+    }
+
+    if (youWin) {
+      canvasContext.font = '30px Arial';
+      drawText('You Win!', GAME_WIDTH/2, GAME_HEIGHT/2, 'black', 'center', 'middle');
+    }
   }
 }

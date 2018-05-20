@@ -4,6 +4,8 @@ const FPS = 30;
 
 var canvas, canvasContext;
 
+var youWin = false;
+
 window.addEventListener("load", function(event) {
   canvas = document.createElement('canvas');
   canvas.width = GAME_WIDTH;
