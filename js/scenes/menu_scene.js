@@ -44,8 +44,26 @@ function MenuScene() {
 
     canvasContext.font = '30px Times';
 
-    drawText('Start Game', GAME_WIDTH/2, 300, this.currentOption == 0 ? 'yellow' : 'black', 'center', 'middle');
-    drawText('Instructions', GAME_WIDTH/2, 340, this.currentOption == 1 ? 'yellow' : 'black', 'center', 'middle');
-    drawText('Credits', GAME_WIDTH/2, 380, this.currentOption == 2 ? 'yellow' : 'black', 'center', 'middle');
+    if (this.currentOption == 0) {
+      drawText('> Start Game <', GAME_WIDTH/2, 300, 'yellow', 'center', 'middle');
+    }
+    else {
+      drawText('Start Game', GAME_WIDTH/2, 300, 'black', 'center', 'middle');
+    }
+    
+
+    if (this.currentOption == 1) {
+      drawText('> Instructions <', GAME_WIDTH/2, 340, 'yellow', 'center', 'middle');
+    }
+    else {
+      drawText('Instructions', GAME_WIDTH/2, 340, 'black', 'center', 'middle');
+    }
+    
+    if (this.currentOption == 2) {
+      drawText('> Credits <', GAME_WIDTH/2, 380, 'yellow', 'center', 'middle');
+    }
+    else {
+      drawText('Credits', GAME_WIDTH/2, 380, 'black', 'center', 'middle');
+    }
   }
 }
