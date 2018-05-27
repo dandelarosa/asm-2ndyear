@@ -55,6 +55,18 @@ function drawGame() {
   this.currentScene.draw();
 }
 
+function goToMenu() {
+  this.nextScene = new MenuScene();
+}
+
+function goToInstructions() {
+  this.nextScene = new InstructionsScene();
+}
+
+function goToCredits() {
+  this.nextScene = new CreditsScene();
+}
+
 function goToNextLevel() {
   this.currentLevel++;
   var levelId = 'level' + this.currentLevel;

@@ -2,14 +2,25 @@ const MENU_TOGGLE_DELAY = 12;
 
 function MenuScene() {
   this.currentOption = 0;
-  this.menuToggleTimer = 0
+  this.menuToggleTimer = 0;
+  this.canExit = false;
 
   this.update = function() {
-    if (enterPressed) {
+    if (enterPressed && this.canExit) {
       if (this.currentOption == 0) {
         restartGame();
       }
+      else if (this.currentOption == 1) {
+        goToInstructions();
+      }
+      else if (this.currentOption == 2) {
+        goToCredits();
+      }
     }
+    else if (!enterPressed) {
+      this.canExit = true;
+    }
+
     if (upPressed && this.menuToggleTimer == 0) {
       this.currentOption--;
       if (this.currentOption < 0) {
