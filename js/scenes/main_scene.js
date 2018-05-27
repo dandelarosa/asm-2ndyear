@@ -32,12 +32,36 @@ function MainScene(tilemap) {
   this.gridCollider = new GridCollider(grid);
   this.objectCollider = new ObjectCollider();
 
+  this.paused = false;
+  this.canPause = false;
+  this.canResume = false;
+
   this.update = function() {
     if (youWin) {
       if (enterPressed) {
         restartGame();
       }
       return;
+    }
+    
+    if (this.paused) {
+      if (enterPressed && this.canResume) {
+        this.paused = false;
+        this.canPause = false;
+      }
+      else if (!enterPressed) {
+        this.canResume = true;
+      }
+      return;
+    }
+    else {
+      if (enterPressed && this.canPause) {
+        this.paused = true;
+        this.canResume = false;
+      }
+      else if (!enterPressed) {
+        this.canPause = true;
+      }
     }
 
     if (leftPressed) {
@@ -104,6 +128,10 @@ function MainScene(tilemap) {
       drawText('You Win!', GAME_WIDTH/2, GAME_HEIGHT/2 - 30, 'black', 'center', 'middle');
       canvasContext.font = '20px Arial';
       drawText('Press Enter to Play Again', GAME_WIDTH/2, GAME_HEIGHT/2 + 10, 'black', 'center', 'middle');
+    }
+    else if (this.paused) {
+      canvasContext.font = '30px Times';
+      drawText('Paused', GAME_WIDTH/2, GAME_HEIGHT/2, 'black', 'center', 'middle');
     }
   }
 }
