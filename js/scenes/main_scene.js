@@ -124,9 +124,9 @@ function MainScene(tilemap) {
     }
 
     if (youWin) {
-      canvasContext.font = '30px Arial';
+      canvasContext.font = '30px Times';
       drawText('You Win!', GAME_WIDTH/2, GAME_HEIGHT/2 - 30, 'black', 'center', 'middle');
-      canvasContext.font = '20px Arial';
+      canvasContext.font = '20px Times';
       drawText('Press Enter to Play Again', GAME_WIDTH/2, GAME_HEIGHT/2 + 10, 'black', 'center', 'middle');
     }
     else if (this.paused) {
