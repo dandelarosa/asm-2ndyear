@@ -1,5 +1,8 @@
+const MENU_TOGGLE_DELAY = 12;
+
 function MenuScene() {
   this.currentOption = 0;
+  this.menuToggleTimer = 0
 
   this.update = function() {
     if (enterPressed) {
@@ -7,17 +10,26 @@ function MenuScene() {
         restartGame();
       }
     }
-    if (upPressed) {
+    if (upPressed && this.menuToggleTimer == 0) {
       this.currentOption--;
       if (this.currentOption < 0) {
         this.currentOption = 2;
       }
+      this.menuToggleTimer = MENU_TOGGLE_DELAY;
     }
-    if (downPressed) {
+    if (downPressed && this.menuToggleTimer == 0) {
       this.currentOption++;
       if (this.currentOption > 2) {
         this.currentOption = 0;
       }
+      this.menuToggleTimer = MENU_TOGGLE_DELAY;
+    }
+
+    if (this.menuToggleTimer > 0) {
+      this.menuToggleTimer--;
+    }
+    if (!upPressed && !downPressed) {
+      this.menuToggleTimer = 0;
     }
   }
 
