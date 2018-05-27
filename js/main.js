@@ -34,7 +34,7 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function loadScene() {
-  this.currentScene = new MainScene(TileMaps['level1']);
+  this.currentScene = new MenuScene();
 }
 
 function eachFrame() {
